@@ -12,16 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.session3.projetfinsession3.model.Client;
-
-
-
+import com.session3.projetfinsession3.repository.ClientRepository;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/client")
 public class ClientController {
 	
-	@Autowired
-	private com.session3.projetfinsession3.repository.ClientRepository clientRepository;
+	@Autowired(required=true)
+	private ClientRepository clientRepository;
 	
 	public ClientController() {}
 		
@@ -30,7 +28,7 @@ public class ClientController {
 		 * @return
 		 */
 		
-		@RequestMapping(value = "/client", method = RequestMethod.GET)
+		@RequestMapping(value = "/clients", method = RequestMethod.GET)
 		public ResponseEntity<?> getAllClient(){
 			List<Client> listeClients = null;
 			try {
@@ -96,7 +94,7 @@ public class ClientController {
 		 * @param id
 		 * @return
 		 */
-		@RequestMapping(value = "/client/{id}", method = RequestMethod.DELETE)
+		@RequestMapping(value = "/client/delete/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteClient(@PathVariable Long id){
 			try {
 			clientRepository.deleteById(id);

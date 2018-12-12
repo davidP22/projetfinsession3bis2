@@ -12,9 +12,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-
-
-
 @Entity
 @Table(name = "Adresse")
 public class Adresse implements Serializable{

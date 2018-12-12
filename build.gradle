@@ -35,7 +35,7 @@ dependencies {
 	compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.47'
 	
 	// https://mvnrepository.com/artifact/io.franzbecker/gradle-lombok
-	compile group: 'io.franzbecker', name: 'gradle-lombok', version: '1.14'
+	//compile group: 'io.franzbecker', name: 'gradle-lombok', version: '1.18.4'
 	
 	
 	

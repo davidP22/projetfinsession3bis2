@@ -14,23 +14,14 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-
-
-
-
-
 @Entity
 @Table(name = "Client")
-
 public class Client implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Client_ID")
 	private long id_client;
 
@@ -44,6 +35,7 @@ public class Client implements Serializable{
 	
 	@OneToMany(mappedBy="client")
 	private Set<Adresse> adresse = new HashSet<Adresse>();
+	
 
 	public Client(@Size(max = 255) String nom, @Size(max = 65) String prenom) {
 		
@@ -132,9 +124,5 @@ public class Client implements Serializable{
 	public boolean addAdresse (Collection<Adresse> newAdresse) {
 		return this.adresse.addAll(newAdresse);
 	}
-
-	
-	
-
 	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,11 +17,11 @@ import com.session3.projetfinsession3.repository.AdresseRepository;
 
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/adresse")
 public class AdresseController {
 
-	@Autowired
-	private AdresseRepository adresseRepo;
+	@Autowired(required=true)
+	private AdresseRepository adresseRepository;
 	
 	public AdresseController() {
 		
@@ -28,11 +29,11 @@ public class AdresseController {
 	
 	//rechercher toutes les adresses
 	
-	@RequestMapping(value = "/adresse", method = RequestMethod.GET)
+	@RequestMapping(value = "/adresses", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllAdresse(){
 		List<Adresse> listeAdresse = null;
 		try {
-			listeAdresse = adresseRepo.findAll();
+			listeAdresse = adresseRepository.findAll();
 		}
 		catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -42,7 +43,7 @@ public class AdresseController {
 	
 	//ajouter une adresse ah ah ah
 	
-	@RequestMapping(value = "/adresse", method = RequestMethod.GET)
+	@PostMapping(value = "/adresse")
 	public ResponseEntity<?> addAdresse(@RequestBody Adresse adresse){
 		Adresse resultAdresse = null;
 		String adresseNom = adresse.getAdresseNom();
@@ -58,7 +59,7 @@ public class AdresseController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque la ville !");
 		
 		try {
-			resultAdresse = adresseRepo.saveAndFlush(adresse);
+			resultAdresse = adresseRepository.saveAndFlush(adresse);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 		}
@@ -69,7 +70,7 @@ public class AdresseController {
 	//modifier une adresse
 	
 	@RequestMapping(value = "/adresse/{id_adresse}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateApprenant(@RequestBody Adresse adresse,@PathVariable Long id) throws Exception {
+	public ResponseEntity<?> updateApprenant(@RequestBody Adresse adresse, @PathVariable Long id) throws Exception {
 		Adresse resultAdresse = null;
 		String adresseNom = adresse.getAdresseNom();
 		if((adresseNom == null) || (adresseNom.isEmpty()))
@@ -84,7 +85,7 @@ public class AdresseController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque la ville !");
 		
 		try {
-			resultAdresse = adresseRepo.save(adresse);
+			resultAdresse = adresseRepository.save(adresse);
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -95,10 +96,10 @@ public class AdresseController {
 	
 	//su^pprimer une adresse
 	
-	@RequestMapping(value = "/adresse/{id_adresse}", method = RequestMethod.DELETE)
+	@RequestMapping(value = "/adresse/delete/{id_adresse}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteAdresse(@PathVariable Long id_adresse){
 		try {
-		adresseRepo.deleteById(id_adresse);
+		adresseRepository.deleteById(id_adresse);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
