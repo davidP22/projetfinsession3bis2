@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -13,7 +14,7 @@ import com.session3.projetfinsession3.repository.AdresseRepository;
 import com.session3.projetfinsession3.repository.ClientRepository;
 
 @SpringBootApplication
-public class Projetfinsession3Application {
+public class Projetfinsession3Application implements CommandLineRunner{
 	
 	@Autowired
 	private ClientRepository clientRepo;
@@ -25,7 +26,11 @@ public class Projetfinsession3Application {
 		SpringApplication.run(Projetfinsession3Application.class, args);
 	}
 	
+	@Override
 	public void run(String... args) throws Exception {
+		
+		clientRepo.deleteAllInBatch();
+		adresseRepo.deleteAllInBatch();
 		
 		Client cli1 = new Client("Martin", "Jean");
 		Client cli2 = new Client("Schmith", "Leon");

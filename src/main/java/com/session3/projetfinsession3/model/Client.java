@@ -18,6 +18,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Client")
+
 public class Client implements Serializable{
 
 	/**
