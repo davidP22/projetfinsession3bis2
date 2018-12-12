@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.session3.projetfinsession3.model.Adresse;
 import com.session3.projetfinsession3.repository.AdresseRepository;
 
-import co.simplon.springboot.apprenant.model.Apprenant;
 
 @RestController
 @RequestMapping("/api")
@@ -51,7 +50,7 @@ public class AdresseController {
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque le nom de l'adresse!");
 		
 		String code_postal = adresse.getCode_postal();
-		if((nom == null) || (nom.isEmpty()))
+		if((code_postal == null) || (code_postal.isEmpty()))
 			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque le code postal !");
 		
 		String ville = adresse.getVille();
@@ -70,25 +69,41 @@ public class AdresseController {
 	//modifier une adresse
 	
 	@RequestMapping(value = "/adresse/{id_adresse}", method = RequestMethod.PUT)
-	public ResponseEntity<?> updateApprenant(@RequestBody Apprenant apprenant,@PathVariable Integer id) throws Exception {
-		Apprenant resultApprenant = null;
-		String prenom = apprenant.getPrenom();
-		if((prenom == null) || (prenom.isEmpty()))
-			
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque le prénom !");
+	public ResponseEntity<?> updateApprenant(@RequestBody Adresse adresse,@PathVariable Long id) throws Exception {
+		Adresse resultAdresse = null;
+		String adresseNom = adresse.getAdresseNom();
+		if((adresseNom == null) || (adresseNom.isEmpty()))
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque le nom de l'adresse!");
 		
-		String nom = apprenant.getNom();
-		if((nom == null) || (nom.isEmpty()))
-			
-			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque le nom !");
+		String code_postal = adresse.getCode_postal();
+		if((code_postal == null) || (code_postal.isEmpty()))
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque le code postal !");
+		
+		String ville = adresse.getVille();
+		if((ville == null) || (ville.isEmpty()))
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque la ville !");
 		
 		try {
-			resultApprenant = apprenantRepository.save(apprenant);
+			resultAdresse = adresseRepo.save(adresse);
 			
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 		}
 		
-		return ResponseEntity.status(HttpStatus.OK).body(resultApprenant);
+		return ResponseEntity.status(HttpStatus.OK).body(resultAdresse);
 	}
+	
+	//su^pprimer une adresse
+	
+	@RequestMapping(value = "/adresse/{id_adresse}", method = RequestMethod.DELETE)
+	public ResponseEntity<?> deleteAdresse(@PathVariable Long id_adresse){
+		try {
+		adresseRepo.deleteById(id_adresse);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
+		
+		return ResponseEntity.status(HttpStatus.OK).body(null);
+	}
+	
 }
