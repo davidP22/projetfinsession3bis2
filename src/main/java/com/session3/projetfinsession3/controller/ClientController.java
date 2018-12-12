@@ -98,7 +98,7 @@ public class ClientController {
 		 * @return
 		 */
 		@RequestMapping(value = "/client/{id}", method = RequestMethod.DELETE)
-		public ResponseEntity<?> deleteClient(@PathVariable long id){
+		public ResponseEntity<?> deleteClient(@PathVariable Long id){
 			try {
 			clientRepository.delete(id);
 			} catch (Exception e) {
