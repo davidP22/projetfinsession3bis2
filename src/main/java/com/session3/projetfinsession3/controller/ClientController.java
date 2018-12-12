@@ -17,8 +17,6 @@ import com.session3.projetfinsession3.repository.ClientRepository;
 
 
 
-
-
 @RestController
 @RequestMapping("/api")
 public class ClientController {
@@ -58,7 +56,7 @@ public class ClientController {
 			Client client = null;
 					
 			try {
-				client =ClientRepository.findOne(id);
+				client = clientRepository.findOne(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 			}
@@ -75,7 +73,7 @@ public class ClientController {
 		 * @return
 		 */
 		@RequestMapping(value = "/client", method = RequestMethod.POST)
-		public ResponseEntity<?> addClient(@RequestBody Client apprenant){
+		public ResponseEntity<?> addClient(@RequestBody Client client){
 			Client resultClient = null;
 			String prenom = client.getPrenom();
 			if((prenom == null) || (prenom.isEmpty()))
@@ -86,7 +84,7 @@ public class ClientController {
 				return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Il manque le nom !");
 			
 			try {
-				resultClient = ClientRepository.saveAndFlush(client);
+				resultClient = clientRepository.saveAndFlush(client);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 			}
