@@ -25,7 +25,6 @@ public class Projetfinsession3Application {
 		SpringApplication.run(Projetfinsession3Application.class, args);
 	}
 	
-	@Override
 	public void run(String... args) throws Exception {
 		
 		Client cli1 = new Client("Martin", "Jean");
