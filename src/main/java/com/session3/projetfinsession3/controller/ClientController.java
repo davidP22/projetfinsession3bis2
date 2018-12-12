@@ -14,12 +14,12 @@ import com.session3.projetfinsession3.model.Client;
 
 @RestController
 @RequestMapping("/api")
-public class Pfs3Controller {
+public class ClientController {
 	
 	@Autowired
 	private com.session3.projetfinsession3.repository.ClientRepository clientRepository;
 	
-	public Pfs3Controller() {}
+	public ClientController() {}
 		
 		/**
 		 * Retourner tous les clients
