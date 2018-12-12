@@ -40,7 +40,7 @@ public class AdresseController {
 		return ResponseEntity.status(HttpStatus.OK).body(listeAdresse);
 	}
 	
-	//ajouter une adresse
+	//ajouter une adresse ah ah ah
 	
 	@RequestMapping(value = "/adresse", method = RequestMethod.GET)
 	public ResponseEntity<?> addAdresse(@RequestBody Adresse adresse){
