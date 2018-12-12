@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.session3.projetfinsession3.model.Client;
-import com.session3.projetfinsession3.repository.ClientRepository;
 
 
 
@@ -56,7 +55,7 @@ public class ClientController {
 			Client client = null;
 					
 			try {
-				client = clientRepository.findOne(id);
+				client = clientRepository.getOne(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
 			}
@@ -100,7 +99,7 @@ public class ClientController {
 		@RequestMapping(value = "/client/{id}", method = RequestMethod.DELETE)
 		public ResponseEntity<?> deleteClient(@PathVariable Long id){
 			try {
-			clientRepository.delete(id);
+			clientRepository.deleteById(id);
 			} catch (Exception e) {
 				return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
 			}
