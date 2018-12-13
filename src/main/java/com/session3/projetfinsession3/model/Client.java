@@ -80,49 +80,54 @@ public class Client implements Serializable{
 		this.hashSetAdresse = adresse;
 	}
 
-	
-//	@Override
-//	public int hashCode() {
-//		final int prime = 31;
-//		int result = 1;
-//		result = prime * result + ((hashSetAdresse == null) ? 0 : hashSetAdresse.hashCode());
-//		result = prime * result + (int) (id_client ^ (id_client >>> 32));
-//		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-//		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-//		return result;
-//	}
-//
-//	@Override
-//	public boolean equals(Object obj) {
-//		if (this == obj)
-//			return true;
-//		if (obj == null)
-//			return false;
-//		if (getClass() != obj.getClass())
-//			return false;
-//		Client other = (Client) obj;
-//		if (hashSetAdresse == null) {
-//			if (other.hashSetAdresse != null)
-//				return false;
-//		} else if (!hashSetAdresse.equals(other.hashSetAdresse))
-//			return false;
-//		if (id_client != other.id_client)
-//			return false;
-//		if (nom == null) {
-//			if (other.nom != null)
-//				return false;
-//		} else if (!nom.equals(other.nom))
-//			return false;
-//		if (prenom == null) {
-//			if (other.prenom != null)
-//				return false;
-//		} else if (!prenom.equals(other.prenom))
-//			return false;
-//		return true;
-//	}
 
 	public boolean addAdresse (Collection<Adresse> listAdresse) {
 		return this.hashSetAdresse.addAll(listAdresse);
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hashSetAdresse == null) ? 0 : hashSetAdresse.hashCode());
+		result = prime * result + ((id_client == null) ? 0 : id_client.hashCode());
+		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (hashSetAdresse == null) {
+			if (other.hashSetAdresse != null)
+				return false;
+		} else if (!hashSetAdresse.equals(other.hashSetAdresse))
+			return false;
+		if (id_client == null) {
+			if (other.id_client != null)
+				return false;
+		} else if (!id_client.equals(other.id_client))
+			return false;
+		if (nom == null) {
+			if (other.nom != null)
+				return false;
+		} else if (!nom.equals(other.nom))
+			return false;
+		if (prenom == null) {
+			if (other.prenom != null)
+				return false;
+		} else if (!prenom.equals(other.prenom))
+			return false;
+		return true;
+	}
+	
+	
 	
 }
