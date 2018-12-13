@@ -23,7 +23,7 @@ public class Client implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "Client_ID")
-	private long id_client;
+	private Long id_client;
 
 	@Size(max = 255)
 	@Column(name = "Nom")
@@ -34,25 +34,25 @@ public class Client implements Serializable{
 	private String prenom;
 	
 	@OneToMany(mappedBy="client")
-	private Set<Adresse> adresse = new HashSet<Adresse>();
+	private Set<Adresse> hashSetAdresse = new HashSet<Adresse>();
 	
 
 	public Client(@Size(max = 255) String nom, @Size(max = 65) String prenom) {
 		
 		this.nom = nom;
 		this.prenom = prenom;
-		this.adresse = new HashSet<Adresse>();
+		this.hashSetAdresse = new HashSet<Adresse>();
 	}
 
 	public Client() {
 		
 	}
 	
-	public long getId_client() {
+	public Long getId_client() {
 		return id_client;
 	}
 
-	public void setId_client(long id_client) {
+	public void setId_client(Long id_client) {
 		this.id_client = id_client;
 	}
 
@@ -73,56 +73,56 @@ public class Client implements Serializable{
 	}
 
 	public Set<Adresse> getAdresse() {
-		return adresse;
+		return hashSetAdresse;
 	}
 
 	public void setAdresse(Set<Adresse> adresse) {
-		this.adresse = adresse;
+		this.hashSetAdresse = adresse;
 	}
 
 	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((adresse == null) ? 0 : adresse.hashCode());
-		result = prime * result + (int) (id_client ^ (id_client >>> 32));
-		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
-		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
-		return result;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((hashSetAdresse == null) ? 0 : hashSetAdresse.hashCode());
+//		result = prime * result + (int) (id_client ^ (id_client >>> 32));
+//		result = prime * result + ((nom == null) ? 0 : nom.hashCode());
+//		result = prime * result + ((prenom == null) ? 0 : prenom.hashCode());
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Client other = (Client) obj;
+//		if (hashSetAdresse == null) {
+//			if (other.hashSetAdresse != null)
+//				return false;
+//		} else if (!hashSetAdresse.equals(other.hashSetAdresse))
+//			return false;
+//		if (id_client != other.id_client)
+//			return false;
+//		if (nom == null) {
+//			if (other.nom != null)
+//				return false;
+//		} else if (!nom.equals(other.nom))
+//			return false;
+//		if (prenom == null) {
+//			if (other.prenom != null)
+//				return false;
+//		} else if (!prenom.equals(other.prenom))
+//			return false;
+//		return true;
+//	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Client other = (Client) obj;
-		if (adresse == null) {
-			if (other.adresse != null)
-				return false;
-		} else if (!adresse.equals(other.adresse))
-			return false;
-		if (id_client != other.id_client)
-			return false;
-		if (nom == null) {
-			if (other.nom != null)
-				return false;
-		} else if (!nom.equals(other.nom))
-			return false;
-		if (prenom == null) {
-			if (other.prenom != null)
-				return false;
-		} else if (!prenom.equals(other.prenom))
-			return false;
-		return true;
-	}
-
-	public boolean addAdresse (Collection<Adresse> newAdresse) {
-		return this.adresse.addAll(newAdresse);
+	public boolean addAdresse (Collection<Adresse> listAdresse) {
+		return this.hashSetAdresse.addAll(listAdresse);
 	}
 	
 }

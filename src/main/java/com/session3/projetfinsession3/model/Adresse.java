@@ -25,7 +25,7 @@ public class Adresse implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "Adresse_ID")
-	private long id_adresse;
+	private Long id_adresse;
 	
 	@Size(max = 100)
 	@Column(name = "AdresseNom")
@@ -62,13 +62,13 @@ public class Adresse implements Serializable{
 
 
 
-	public long getId_adresse() {
+	public Long getId_adresse() {
 		return id_adresse;
 	}
 
 
 
-	public void setId_adresse(long id_adresse) {
+	public void setId_adresse(Long id_adresse) {
 		this.id_adresse = id_adresse;
 	}
 
@@ -122,53 +122,53 @@ public class Adresse implements Serializable{
 
 
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((adresseNom == null) ? 0 : adresseNom.hashCode());
-		result = prime * result + ((client == null) ? 0 : client.hashCode());
-		result = prime * result + ((code_postal == null) ? 0 : code_postal.hashCode());
-		result = prime * result + (int) (id_adresse ^ (id_adresse >>> 32));
-		result = prime * result + ((ville == null) ? 0 : ville.hashCode());
-		return result;
-	}
-
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Adresse other = (Adresse) obj;
-		if (adresseNom == null) {
-			if (other.adresseNom != null)
-				return false;
-		} else if (!adresseNom.equals(other.adresseNom))
-			return false;
-		if (client == null) {
-			if (other.client != null)
-				return false;
-		} else if (!client.equals(other.client))
-			return false;
-		if (code_postal == null) {
-			if (other.code_postal != null)
-				return false;
-		} else if (!code_postal.equals(other.code_postal))
-			return false;
-		if (id_adresse != other.id_adresse)
-			return false;
-		if (ville == null) {
-			if (other.ville != null)
-				return false;
-		} else if (!ville.equals(other.ville))
-			return false;
-		return true;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((adresseNom == null) ? 0 : adresseNom.hashCode());
+//		result = prime * result + ((client == null) ? 0 : client.hashCode());
+//		result = prime * result + ((code_postal == null) ? 0 : code_postal.hashCode());
+//		result = prime * result + (int) (id_adresse ^ (id_adresse >>> 32));
+//		result = prime * result + ((ville == null) ? 0 : ville.hashCode());
+//		return result;
+//	}
+//
+//
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Adresse other = (Adresse) obj;
+//		if (adresseNom == null) {
+//			if (other.adresseNom != null)
+//				return false;
+//		} else if (!adresseNom.equals(other.adresseNom))
+//			return false;
+//		if (client == null) {
+//			if (other.client != null)
+//				return false;
+//		} else if (!client.equals(other.client))
+//			return false;
+//		if (code_postal == null) {
+//			if (other.code_postal != null)
+//				return false;
+//		} else if (!code_postal.equals(other.code_postal))
+//			return false;
+//		if (id_adresse != other.id_adresse)
+//			return false;
+//		if (ville == null) {
+//			if (other.ville != null)
+//				return false;
+//		} else if (!ville.equals(other.ville))
+//			return false;
+//		return true;
+//	}
 
 	
 
